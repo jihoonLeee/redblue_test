@@ -2,15 +2,11 @@ package redblue.multipart.test.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 @Getter
+@Setter
 public class FileDto {
 
     private String filePath;

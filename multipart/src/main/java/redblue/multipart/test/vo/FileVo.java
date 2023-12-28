@@ -4,13 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
+@Setter
 public class FileVo {
 
     private String filePath;
     private String fileName;
 
-    public FileVo(String filePath,String fileName){
-        this.filePath=filePath;
-        this.fileName=fileName;
+    public FileVo(String filePath, String fileName) {
+        this.filePath = filePath;
+        this.fileName = fileName;
     }
+
 }

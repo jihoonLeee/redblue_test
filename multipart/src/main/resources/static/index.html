@@ -10,10 +10,11 @@
 </head>
 <body>
 <input type="file" id="fileInput" name="file"/><button onclick="uploadFile();"> 파일 업로드</button>
+<br/>
+<br/>
+<br/>
 <input type="text" placeholder="찾을 이미지 이름을 적으세요" id="findFile"/> <button onclick="findFile()"> 파일 찾기</button>
-<input type="file" id="file-input" accept="image/*">
-<img id="preview" width="500px">
-
+<div id="imageContainer"/>
 <script>
 
     function uploadFile(){
@@ -37,25 +38,29 @@
         });
     }
 
-    function findFile(){
-        var fileName = $("#findFile").val();
-        $.ajax({
-            type : "GET",
-            url : "/file/find/"+fileName,
-            processData: false,
-            contentType: false,
-            success : function(res){
-                console.log(res.fileName , res.filePath);
-                var imagePath = res.filePath+res.fileName;
-                var img = document.getElementById('preview');
+    function findFile() {
+    var fileName = $("#findFile").val();
+    $.ajax({
+        type: "GET",
+        url: "/file/find/" + fileName,
+        processData: false,
+        contentType: false,
+        success: function(res) {
+            $('#imageContainer').html("");
+            var img = $('<img>', {
+                id: 'find_image',
+                src: res.filePath + res.fileName
+            });
 
-                img.src = imagePath;
-            },
-            error : function(XMLHttpRequest, textStatus, errorThrown){
-                alert("해당 파일이 없습니다.");
-            }
-        });
-    }
+            $('#imageContainer').append(img);
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("해당 파일이 없습니다.");
+        }
+    });
+}
+
+
 </script>
 </body>
 </html>

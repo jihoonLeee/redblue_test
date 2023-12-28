@@ -19,13 +19,11 @@ public class FileController {
     private final FileService fileService;
 
     @PostMapping("/upload")
-    @ResponseBody
     public ResponseEntity<FileDto> upload(@RequestParam("file") MultipartFile file) throws IOException {
         FileVo vo = fileService.upload(file);
         return ResponseEntity.ok(new FileDto(vo.getFilePath(),vo.getFileName()));
     }
 
-    @ResponseBody
     @GetMapping("/find/{fileName}")
     public ResponseEntity<FileDto> findFile(@PathVariable("fileName") String fileName) throws IOException {
         FileVo vo = fileService.findFile(fileName);
